@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>盒子漂浮</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box,.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
+            width:150px;
+            height: 150px;
+            background-image:-webkit-radial-gradient(#ff6700,#fbff00);
+            box-shadow:0 0 100px 50px rgba(254,245,7,0.8);
+            border-radius:50%;
+            position: absolute;
+            top:50px;
+            left:50px;
+        }
+        .box1{
+            position: absolute;
+            top:250px;
+            left:300px;
+        }
+        .box2{
+            position: absolute;
+            top:500px;
+            left:550px;
+        }
+        .box3{
+            position: absolute;
+            top:250px;
+            left:800px;
+        }
+        .box4{
+            position: absolute;
+            top:50px;
+            left:1050px;
+        }
+        .box5{
+            position: absolute;
+            top:500px;
+            left:50px;
+        }
+        .box6{
+            position: absolute;
+            top:550px;
+            left:300px;
+        }
+        .box7{
+            position: absolute;
+            top:50px;
+            left:550px;
+        }
+        .box8{
+            position: absolute;
+            top:500px;
+            left:800px;
+        }
+        .box9{
+            position: absolute;
+            top:500px;
+            left:1050px;
+        }
+        html,body{
+            height: 100%;
+            width:100%;
+            overflow: hidden;
+            background: #000;
+        /*linear-gradient(to right,#5a2cff,#e2485f)*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6"></div>
+    <div class="box7"></div>
+    <div class="box8"></div>
+    <div class="box9"></div>
+</body>
+</html>
+<script>
+    // let ddv=document.querySelector('.box');
+    // let maxWidth=innerWidth-ddv.offsetWidth
+    // let maxHeight=innerHeight-ddv.offsetHeight
+    // console.log(ddv);
+    // let num1=20,num2=20;
+    // let t=setInterval(move,50);
+    // function move(){
+    //     let tops=ddv.offsetTop+num1;
+    //     let lefts=ddv.offsetLeft+num2;
+    //     if(tops>=maxHeight){
+    //         num1*=-1;
+    //     }
+    //     else if(lefts>=maxWidth){
+    //         num2*=-1;
+    //     }
+    //     if(tops<=10){
+    //         num1*=-1;
+    //     }
+    //     else if(lefts<=10){
+    //         num2*=-1;
+    //     }
+    //     ddv.style.top=tops+"px";
+    //     ddv.style.left=lefts+"px";
+    //
+    // }
+   //  window.onresize(){
+   //     let maxWidth=innerWidth-ddv.offsetWidth
+   //      let maxHeight=innerHeight-ddv.offsetHeight
+   // };
+ // this出现在函数内部,谁调用该函数,this指向谁
+
+    let ddv=document.querySelector('.box');
+    let ddv1=document.querySelector('.box1');
+    let ddv2=document.querySelector('.box2');
+    let ddv3=document.querySelector('.box3');
+    let ddv4=document.querySelector('.box4');
+    let ddv5=document.querySelector('.box5');
+    let ddv6=document.querySelector('.box6');
+    let ddv7=document.querySelector('.box7');
+    let ddv8=document.querySelector('.box8');
+    let ddv9=document.querySelector('.box9');
+    function Float(obj){
+        this.Element=obj;
+        this.speedY=20;
+        this.speedX=20;
+        this.maxWidth=innerWidth-this.Element.offsetWidth
+        this.maxHeight=innerHeight-this.Element.offsetHeight
+    }
+    Float.prototype={
+        play:function(){
+            let that=this
+            setInterval(function(){
+                let tops=that.Element.offsetTop+that.speedY;
+                let lefts=that.Element.offsetLeft+that.speedX;
+                if(tops>=that.maxHeight){
+                    that.speedY*=-1;
+                }
+                if(lefts>=that.maxWidth){
+                    that.speedX*=-1;
+                }
+                if(tops<=10){
+                    that.speedY*=-1;
+                }
+                if(lefts<=10){
+                    that.speedX*=-1;
+                }
+                that.Element.style.top=tops+"px";
+                that.Element.style.left=lefts+"px";
+            },20);
+        },
+        resize:function(){
+            this.maxWidth=innerWidth-this.Element.offsetWidth
+            this.maxHeight=innerHeight-this.Element.offsetHeight
+        }
+    }
+    let float1=new Float(ddv);
+    let float2=new Float(ddv1);
+    let float3=new Float(ddv2);
+    let float4=new Float(ddv3);
+    let float5=new Float(ddv4);
+    let float6=new Float(ddv5);
+    let float7=new Float(ddv6);
+    let float8=new Float(ddv7);
+    let float9=new Float(ddv8);
+    let float10=new Float(ddv9);
+    float1.play()
+    float2.play()
+    float3.play()
+    float4.play()
+    float5.play()
+    float6.play()
+    float7.play()
+    float8.play()
+    float9.play()
+    float10.play()
+    window.onresize=function(){
+        float1.resize()
+        float2.resize()
+        float3.resize()
+        float4.resize()
+        float5.resize()
+        float6.resize()
+        float7.resize()
+        float8.resize()
+        float9.resize()
+        float10.resize()
+    }
+</script>
